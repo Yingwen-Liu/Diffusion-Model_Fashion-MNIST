@@ -90,8 +90,8 @@ def train(diffusion_model: DiffusionModel,
 
 # training the diffusion model
 device = torch.device('cuda')
-num_steps = 1000 # define the number of steps (>500)
-batch_size = 100 # define your batch size
+num_steps = 1000
+batch_size = 100
 lr = 0.0005
 epochs = 100
 num_classes = 10
