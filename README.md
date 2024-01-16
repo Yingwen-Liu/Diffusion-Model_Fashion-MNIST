@@ -11,5 +11,5 @@ train.py is the code to train the model with the Fashion MNIST Dataset.
 
 ## Acknowledgment
 - CMPUT 328, University of Alberta
-- lucidrains: github.com/lucidrains/denoising-diffusion-pytorch
+- lucidrains: https://github.com/lucidrains/denoising-diffusion-pytorch 
 
