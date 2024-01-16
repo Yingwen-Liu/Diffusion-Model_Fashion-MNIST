@@ -50,7 +50,6 @@ class VarianceScheduler:
         return noisy_x, noise
 
 
-# The code for SinusoidalPositionEmbeddings is from CMPUT 328/resources/diffusion_model.ipynb
 class SinusoidalPositionEmbeddings(nn.Module):
     def __init__(self, dim):
         super().__init__()
@@ -106,7 +105,7 @@ class ResBlock(nn.Module):
         # apply residual block
         return self.net(x) + x
 
-# The Attention Block is modified from https://github.com/lucidrains/denoising-diffusion-pytorch/blob/5ff2393c72a2a678535ac1c31779684552f18189/denoising_diffusion_pytorch/denoising_diffusion_pytorch.py
+# The Attention Block and the UNet architecture is modified from https://github.com/lucidrains/denoising-diffusion-pytorch/blob/5ff2393c72a2a678535ac1c31779684552f18189/denoising_diffusion_pytorch/denoising_diffusion_pytorch.py
 class AttentionBlock(nn.Module):
     def __init__(self, dim, heads=4, dim_head=32):
         super().__init__()
