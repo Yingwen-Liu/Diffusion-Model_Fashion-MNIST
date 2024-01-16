@@ -10,7 +10,7 @@ train.py is the code to train the model with the Fashion MNIST Dataset.
 - Cuda
 
 ## To-Do
-[ ] Restructure the code
+- [ ] Restructure the code
 
 ## Acknowledgment
 - lucidrains: https://github.com/lucidrains/denoising-diffusion-pytorch 
