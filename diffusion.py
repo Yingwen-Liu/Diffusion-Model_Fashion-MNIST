@@ -50,7 +50,7 @@ class VarianceScheduler:
         return noisy_x, noise
 
 
-# The code for SinusoidalPositionEmbeddings is from eclass/CMPUT 328/resources/diffusion_model.ipynb
+# The code for SinusoidalPositionEmbeddings is from CMPUT 328/resources/diffusion_model.ipynb
 class SinusoidalPositionEmbeddings(nn.Module):
     def __init__(self, dim):
         super().__init__()
