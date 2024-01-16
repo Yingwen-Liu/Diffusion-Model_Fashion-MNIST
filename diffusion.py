@@ -250,16 +250,16 @@ class DiffusionModel(nn.Module):
             torch.float32: the loss between the actual noises and the estimated noise
         """
 
-        # step1: sample timesteps
+        # sample timesteps
         timesteps = torch.randint(0, self.var_scheduler.num_steps, (x.size(0),), device=x.device)
 
-        # step2: compute the noisy versions of the input image according to your timesteps
+        # compute the noisy versions of the input image according to your timesteps
         noisy_x, noise = self.var_scheduler.add_noise(x, timesteps)
 
-        # step3: estimate the noises using your noise estimating network
+        # estimate the noises using your noise estimating network
         estimate = self.network(noisy_x, timesteps, y)
 
-        # step4: compute the loss between the estimated noises and the true noises
+        # compute the loss between the estimated noises and the true noises
         loss = F.mse_loss(noise, estimate)
 
         return loss
