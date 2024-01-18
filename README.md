@@ -1,9 +1,9 @@
 # Diffusion-Model_Fashion-MNIST
-**A Diffusion Model that needs more tuning**
+**A Diffusion Model that needs more tuning** Accuracy: ~70% for Fashion MNIST
 
-train.py is the code to train the model with the Fashion MNIST Dataset.
+train.py is the code to train and test the model
 
-**A Friendly Reminder**: This model has a low accuracy (~70%). Learning purpose only.
+**A Friendly Reminder**: This model has a low accuracy. Please fine-tune before using.
 
 ## Prerequisites
 - Pytorch
