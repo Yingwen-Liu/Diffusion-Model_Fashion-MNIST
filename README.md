@@ -3,7 +3,7 @@
 
 train.py is the code to train and test the model
 
-**A Friendly Reminder**: This model has a low accuracy. Please fine-tune before using.
+- **A Friendly Reminder**: This model has a low accuracy. Please fine-tune before using.
 
 ## Prerequisites
 - Pytorch
