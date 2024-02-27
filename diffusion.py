@@ -103,35 +103,6 @@ class ResBlock(nn.Module):
         # apply residual block
         return self.net(x) + x
 
-# The Attention Block and the UNet architecture is modified from https://github.com/lucidrains/denoising-diffusion-pytorch/blob/5ff2393c72a2a678535ac1c31779684552f18189/denoising_diffusion_pytorch/denoising_diffusion_pytorch.py
-class AttentionBlock(nn.Module):
-    def __init__(self, dim, heads=4, dim_head=32):
-        super().__init__()
-        self.scale = dim_head**-0.5
-        self.heads = heads
-        hidden_dim = dim_head * heads
-        self.to_qkv = nn.Conv2d(dim, hidden_dim * 3, 1, bias=False)
-
-        self.to_out = nn.Sequential(
-            nn.Conv2d(hidden_dim, dim, 1),
-            nn.BatchNorm2d(dim))
-
-    def forward(self, x):
-        b, c, h, w = x.shape
-        qkv = self.to_qkv(x).chunk(3, dim=1)
-        q, k, v = qkv
-
-        q = q.view(b, self.heads, -1, h*w).softmax(dim=-2)
-        k = k.view(b, self.heads, -1, h*w).softmax(dim=-1)
-
-        q = q * self.scale
-        v = v.view(b, self.heads, -1, h*w) / (h * w)
-
-        context = torch.einsum("b h d n, b h e n -> b h d e", k, v)
-        out = torch.einsum("b h d e, b h d n -> b h e n", context, q)
-        out = out.view(b, -1, h, w)
-        return self.to_out(out)
-
 
 class NoiseEstimatingNet(nn.Module):
     """
@@ -159,7 +130,7 @@ class NoiseEstimatingNet(nn.Module):
         self.down2 = nn.Conv2d(hid_ch[1], hid_ch[1], 4, stride=2, padding=1)
         self.block3 = ResBlock(hid_ch[1], hid_ch[1])
         self.class3 = ClassEmbeddings(c, hid_ch[1], num_classes)
-        self.attension = AttentionBlock(hid_ch[1])
+        self.attention = nn.MultiheadAttention((hid_ch[1], 4)
 
         # Up Sampling
         self.up1 = nn.ConvTranspose2d(hid_ch[1], hid_ch[1], 4, stride=2, padding=1)
@@ -200,7 +171,7 @@ class NoiseEstimatingNet(nn.Module):
         m = self.down2(x2)
         m = self.block3(m)
         m = self.class3(m, y)
-        m = self.attension(m)
+        m = self.attention(m)
 
         # Up Sampling
         y2 = self.up1(m)
