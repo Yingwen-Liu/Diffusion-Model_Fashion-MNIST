@@ -130,7 +130,7 @@ class NoiseEstimatingNet(nn.Module):
         self.down2 = nn.Conv2d(hid_ch[1], hid_ch[1], 4, stride=2, padding=1)
         self.block3 = ResBlock(hid_ch[1], hid_ch[1])
         self.class3 = ClassEmbeddings(c, hid_ch[1], num_classes)
-        self.attention = nn.MultiheadAttention((hid_ch[1], 4)
+        self.attention = nn.MultiheadAttention(hid_ch[1], 4)
 
         # Up Sampling
         self.up1 = nn.ConvTranspose2d(hid_ch[1], hid_ch[1], 4, stride=2, padding=1)
