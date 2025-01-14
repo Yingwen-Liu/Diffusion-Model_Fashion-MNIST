@@ -13,7 +13,7 @@ train.py is the code to train and test the model
 - Cuda
 
 ## To-Do
-- [ ] Restructure the code
+- [ ] Refoctor the code
 
 ## Acknowledgment
 - lucidrains: https://github.com/lucidrains/denoising-diffusion-pytorch 
